@@ -11,10 +11,11 @@ export default function TabButtons({ categories }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
+  console.log(categories);
 
   const categoryCount = {};
-  categories.forEach((resource) => {
-    const categoryItem = resource.fields.category.fields.category;
+  categories.data.forEach((resource) => {
+    const categoryItem = resource.category;
     categoryCount[categoryItem] = (categoryCount[categoryItem] || 0) + 1;
   });
 

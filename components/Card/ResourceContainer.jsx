@@ -16,12 +16,12 @@ export default async function ResourceContainer({ category, page, per_page }) {
     "fields.category.fields.category": category === "all" ? null : category,
   });
 
-  
+  console.log(resources);
   return (
     <>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-        {resources.map((resource) => {
-          return <ResourceCard key={resource.sys.id} resource={resource} />;
+        {resources.data.map((resource, i) => {
+          return <ResourceCard key={i} resource={resource} />;
         })}
       </div>
       <PaginationControls

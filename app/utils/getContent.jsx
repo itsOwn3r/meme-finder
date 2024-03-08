@@ -23,9 +23,12 @@ const localData = {
 };
 
 export async function getContent({ tag, category, page }) {
+  const res = await fetch("http://localhost/php/meme/");
+  const data = await res.json();
   
+  console.log(data);
   return {
-    items: localData.items, 
-    total: localData.total,
+    items: data, 
+    total: data.length,
   };
 }

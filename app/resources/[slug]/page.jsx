@@ -43,7 +43,7 @@ async function fetchResource({ slug }) {
     "fields.slug": slug,
     
   }, {
-    revalidate: 345600, // Add revalidation here
+    revalidate: 0, // Add revalidation here
   });
 
   return res.items[0];
