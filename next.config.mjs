@@ -1,5 +1,6 @@
-module.exports = {
-    images: {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
       dangerouslyAllowSVG: true,
       remotePatterns: [
         {
@@ -12,5 +13,6 @@ module.exports = {
         },
       ],
     },
+};
 
-  }
+export default nextConfig;

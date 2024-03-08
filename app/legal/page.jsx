@@ -1,18 +1,17 @@
-import profile from "../../../public/images/profile.webp";
+import profile from "../../public/images/profile.webp";
 import Image from "next/image";
 import Clipboard from "@/libs/Clipboard/Clipboard";
 
 export const metadata = {
   metadataBase: new URL("https://pillarstack.com"),
   alternates: {
-    canonical: "/about",
+    canonical: "/legal",
     languages: {
       "en-US": "/en-US",
     },
   },
-  title: "Pillarstack — About",
-  description:
-    "Learn more about Pillarstack and the rationale behind its creation.",
+  title: "Pillarstack — Legal Information",
+  description: "Trademarks and user privacy details on Pillarstack.",
   robots: {
     index: true,
     follow: true,
@@ -25,22 +24,22 @@ export default function About() {
     <div className="my-20 flex-col flex lg:grid lg:grid-cols-12">
       <div className="text-display col-span-4">
         <h1 className="mb-8 lg:pl-8">
-          About <span className="text-light-gray">Pillarstack</span>
+          Legal <span className="text-light-gray">Info</span>
         </h1>
       </div>
-      <div className=" col-start-6 col-span-5 max-w-xl lg:max-w-none text-h5 md:text-h4  leading-[130%] text-light-gray font-medium space-y-7">
+      <div className=" col-start-6 col-span-5 max-w-xl lg:max-w-none text-h5 md:text-h4 leading-[130%] text-light-gray font-medium space-y-7">
         <p className="space-y-8 flex flex-col">
           <span>
-            I created Pillarstack to address the frustrations I encountered when
-            I started out in frontend development and web design. Hunting for
-            resources and tools consumed a lot valuable time that could have
-            been better spent honing my skills.{" "}
+            This website use Google Analytics to analyze traffic and the usage to improve its performance and user experience. No personal information is collected.
           </span>
 
           <span>
-            Now Pillarstack exists to support those that have similar issues.
-            These resources are handpicked and curated by me and other amazing
-            contributors.
+            All trademarks, logos, brand and company names are the property of
+            their respective owners.
+          </span>
+
+          <span>
+           Some are affiliate links. I receive a small commission when you purchase or sign up through the links, at no extra cost for you.
           </span>
         </p>
         <div className="flex items-center gap-x-3">

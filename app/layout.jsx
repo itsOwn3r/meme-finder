@@ -7,7 +7,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 const overusedgrotesk = localFont({
   src: [
     {
-      path: "../../public/fonts/OverusedGrotesk-VF.woff2",
+      path: "../public/fonts/OverusedGrotesk-VF.woff2",
     },
   ],
   display: "block",

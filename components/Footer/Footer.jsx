@@ -69,7 +69,7 @@ export default function Footer() {
             target="_blank"
           >
             <Image
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=427808&theme=dark"
+              src="/images/featured.svg"
               alt="Pillarstack - Assorted resources for frontend developers and web designers | Product Hunt"
               style={{width: "250px", height: "54px"}}
               width="200"

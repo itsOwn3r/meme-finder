@@ -21,8 +21,10 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
+    "typescript": "^5",
     "@types/node": "20.11.14",
     "@types/react": "18.2.48",
+    "@types/react-dom": "^18",
     "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "^14.1.0",
