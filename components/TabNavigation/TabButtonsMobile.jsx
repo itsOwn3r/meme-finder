@@ -14,7 +14,7 @@ export default function TabButtons({ categories }) {
   console.log(categories);
 
   const categoryCount = {};
-  categories.data.forEach((resource) => {
+  categories.forEach((resource) => {
     const categoryItem = resource.category;
     categoryCount[categoryItem] = (categoryCount[categoryItem] || 0) + 1;
   });

@@ -31,8 +31,8 @@ export default async function Home({ searchParams }) {
         </p>
       </section>
       <section>
-        <TabMobile categories={categories} />
-        <Tab categories={categories} />
+        <TabMobile categories={categories.data} />
+        <Tab categories={categories.data} />
         <Suspense fallback={<Skeleton />}>
           <ResourceContainer
             category={category}
