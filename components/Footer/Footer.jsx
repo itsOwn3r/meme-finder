@@ -38,10 +38,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-32 mb-16 sm:mb-0">
-      <div className="border-b border-b-dim-gray pb-6">
-        <span className="sr-only">PILLARSTACK</span>
-        <FooterTitle />
+    <footer className="mt-4 mb-16 sm:mb-0">
+      <div className="pb-6 footer-name">
+        MEME FINDER
       </div>
       <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">
         <div className="gap-y-4 b-8 flex flex-col text-base xl:text-h6 2xl:text-h5">
