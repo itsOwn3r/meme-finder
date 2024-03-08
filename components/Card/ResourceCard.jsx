@@ -3,8 +3,7 @@ import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 
 export default function ResourceCard({ resource }) {
-  console.log(resource);
-  const { title, category, thumbnail, tags, slug } = resource;
+  const { title, category, thumbnail, tags, id } = resource;
 
   // Extract tag names from the tags reference field
   const tagNames = tags.map((tag) => tag.tag);
@@ -12,7 +11,7 @@ export default function ResourceCard({ resource }) {
 
 
   return (
-    <Link href={`/resources/${slug}`} className="bg-dark-charcoal border-4 border-outline rounded-xl border-opacity-15  overflow-hidden w-full hover:border-opacity-50 transition-colors duration-150 ease-in group @container ">
+    <Link href={`/resources/${id}`} className="bg-dark-charcoal border-4 border-outline rounded-xl border-opacity-15  overflow-hidden w-full hover:border-opacity-50 transition-colors duration-150 ease-in group @container ">
       <div className=" bg-super-dark-gray flex relative items-center justify-center pb-[50%] pt-[50%] rounded-b-2xl">
         <div className="absolute w-2/3 rounded-3xl overflow-hidden transition-all shadow-shine group-hover:shadow-bright bg-transparent bg-opacity-0 ">
           <Image loading="lazy" className="w-full object-cover" quality={100} width={200} height={200} alt={title} src={"/images/memes/" + thumbnail} />

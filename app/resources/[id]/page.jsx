@@ -33,26 +33,24 @@ export async function generateStaticParams() {
   });
 
   return res.items.data.map((item) => ({
-    slug: item.slug,
+    id: item.id,
   }));
 }
 
-async function fetchResource({ slug }) {
+async function fetchResource({ id }) {
   const res = await getContent({
     content_type: "resourcesPage",
-    "fields.slug": slug,
+    "id": id,
     
   }, {
     revalidate: 0, // Add revalidation here
   });
-console.log(res);
   return res.items.data[0];
+  
 }
 
 export default async function ResourceDetails({ params }) {
   const resource = await fetchResource(params);
-console.log(params);
-console.log(resource);
   return (
     <section className="mt-8">
       <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2">
