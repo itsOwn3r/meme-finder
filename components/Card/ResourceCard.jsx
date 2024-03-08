@@ -34,7 +34,7 @@ export default function ResourceCard({ resource }) {
           </div>
         </div>
         <div className="flex items-center justify-center px-3 py-1 bg-primary rounded-full text-super-dark-gray font-semibold text-xs xl:text-sm 2xl:text-base">
-          <span>{category.category}</span>
+          <span>{category}</span>
         </div>
       </div>
     </Link>

@@ -14,8 +14,8 @@ export async function generateMetaData({ params }) {
           "The resource you are looking for does not exist or it has been removed.",
       };
     return {
-      title: resource.fields.title,
-      description: resource.fields.description,
+      title: resource.title,
+      description: resource.description,
     };
   } catch (error) {
     console.error(error);
@@ -32,8 +32,8 @@ export async function generateStaticParams() {
     content_type: "resourcesPage",
   });
 
-  return res.items.map((item) => ({
-    slug: item.fields.slug,
+  return res.items.data.map((item) => ({
+    slug: item.slug,
   }));
 }
 
@@ -45,13 +45,14 @@ async function fetchResource({ slug }) {
   }, {
     revalidate: 0, // Add revalidation here
   });
-
-  return res.items[0];
+console.log(res);
+  return res.items.data[0];
 }
 
 export default async function ResourceDetails({ params }) {
   const resource = await fetchResource(params);
-
+console.log(params);
+console.log(resource);
   return (
     <section className="mt-8">
       <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2">
@@ -63,8 +64,8 @@ export default async function ResourceDetails({ params }) {
           <div className="absolute w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
             <Image
               priority={true}
-              alt={resource.fields.title}
-              src={"https:" + resource.fields.thumbnail.fields.file.url}
+              alt={resource.title}
+              src={"/images/memes/" + resource.thumbnail}
               className="h-full w-full"
               width={800}
               height={800}
@@ -74,15 +75,15 @@ export default async function ResourceDetails({ params }) {
         <div className="w-full mt-12 md:mt-0 md:w-1/2">
           <div className="flex flex-col gap-y-3 items-start">
             <h1 className="text-h4 xl:text-h3 font-bold">
-              {resource.fields.title}
+              {resource.title}
             </h1>
             <p className=" text-text text-base xl:text-h6 2xl:text-h5 max-w-[50ch] text-balance pb-3 ">
-              {resource.fields.description}
+              {resource.description}
             </p>
             <Button
               target="_blank"
               rel="noopener noreferrer"
-              href={resource.fields.link}
+              href={resource.link}
             >
               View Source
             </Button>
@@ -92,18 +93,18 @@ export default async function ResourceDetails({ params }) {
             <div className=" gap-x-1 grid grid-cols-12 border-t-2 border-outline border-opacity-20 py-2">
               <h2 className=" font-semibold col-span-4">Category</h2>
               <span className=" col-span-8 text-text px-1">
-                {resource.fields.category.fields.category}
+                {resource.category}
               </span>
             </div>
             <div className=" gap-x-1 grid grid-cols-12 ">
               <h2 className=" font-semibold col-span-4 pt-2">Tags</h2>
               <span className="flex flex-col col-span-8  text-text">
-                {resource.fields.tags.map((tag) => (
+                {resource.tags.map((tag) => (
                   <span
                     className=" py-2 border-b-2 border-outline border-opacity-20 px-1"
-                    key={tag.sys.id}
+                    key={tag}
                   >
-                    {tag.fields.tag}
+                    {tag}
                   </span>
                 ))}
               </span>
