@@ -39,7 +39,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-4 mb-16 sm:mb-0">
-      <div className="pb-6 footer-name">
+      <div className="pb-6 footer-name text-zinc-300">
         MEME FINDER
       </div>
       <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">

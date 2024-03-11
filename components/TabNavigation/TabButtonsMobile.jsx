@@ -11,7 +11,7 @@ export default function TabButtons({ categories }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(categories);
+  // console.log(categories);
 
   const categoryCount = {};
   categories.forEach((resource) => {

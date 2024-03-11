@@ -43,12 +43,12 @@ export async function getContent({ tag, category, page, id, limit }) {
     params.append("per_page", limit);
   }
   const finalParams = params.toString();
-  console.log(`http://localhost/php/meme/?${finalParams}`);
+  // console.log(`http://localhost/php/meme/?${finalParams}`);
   const res = await fetch(`http://localhost/php/meme/?${finalParams}`);
   const data = await res.json();
-  console.log(data);
-  console.log(data.length);
-  console.log(data.total);
+  // console.log(data);
+  // console.log(data.length);
+  // console.log(data.total);
   return {
     items: data, 
     total: data.total,

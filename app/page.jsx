@@ -14,7 +14,6 @@ export default async function Home({ searchParams }) {
     order: ["fields.title"],
     include: 2,
   });
-  console.log(categories);
 
   return (
     <main>

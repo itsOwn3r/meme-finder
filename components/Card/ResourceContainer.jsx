@@ -17,9 +17,9 @@ export default async function ResourceContainer({ category, page, per_page }) {
     category: category === "all" ? null : category,
   });
 
-  console.log(resources);
-  console.log(per_page);
-  console.log(page);
+  // console.log(resources);
+  // console.log(per_page);
+  // console.log(page);
   return (
     <>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">

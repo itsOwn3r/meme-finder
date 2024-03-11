@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const colors = require('tailwindcss/colors')
 
 const config: Config = {
   content: [
@@ -41,6 +42,9 @@ const config: Config = {
       'gradient3': '#675E4C',
     },
     extend: {
+      colors: {
+        zinc: colors.zinc,
+      },
       fontFamily: {
         overusedgrotesk: ['var(--font-overusedgrotesk)'],
       },
