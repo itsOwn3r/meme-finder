@@ -23,7 +23,7 @@ const localData = {
 };
 
 export async function getContent({ tag, category, page, id, limit }) {
-  console.log(id);
+  // console.log(id);
   let url = new URL("http://localhost/php/meme/");
   let params = new URLSearchParams(url.search);
   

@@ -19,14 +19,13 @@ export default async function Home({ searchParams }) {
     <main>
       <section className="mx-auto flex flex-col items-center space-y-5 mt-20 mb-32">
         <h1 className=" text-display max-w-[20ch] text-center text-accent">
-          Assorted resources{" "}
+          Meme Finder{" "}
           <span className=" text-light-gray">
-            for frontend developers and web designers.
+            is a great tool to keep all your memes in one place.
           </span>
         </h1>
         <p className="text-text mx-auto text-base text-center xl:text-h6 2xl:text-h5 pt-5 max-w-[50ch]">
-          Explore curated and handpicked goodies that enhance your workflow and
-          cultivate your growth as a developer and designer.
+          You can search through your memes by title, tag, description and text of the Meme(OCR)
         </p>
       </section>
       <section>

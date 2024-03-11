@@ -42,7 +42,7 @@ export default function Footer() {
       <div className="pb-6 footer-name text-zinc-300">
         MEME FINDER
       </div>
-      <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">
+      {/* <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">
         <div className="gap-y-4 b-8 flex flex-col text-base xl:text-h6 2xl:text-h5">
           
           <div className="flex w-56 gap-x-1 xl:w-96 ">
@@ -103,7 +103,7 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </footer>
   );
 }
