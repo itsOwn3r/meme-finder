@@ -5,13 +5,12 @@ import { GoArrowLeft } from 'react-icons/go'
 import Image from "next/image";
 import { getOCR } from '@/libs/getOCR';
 
-type ObjToSendType = {
+export type ObjToSendType = {
   title: HTMLInputElement | string[] | null | string;
   description?: HTMLInputElement | string[] | null | string;
   source?: HTMLInputElement | string[] | null;
   category: HTMLInputElement | string[] | null | string;
   tags?: string[];
-  meme: File;
 
   OCR?: string
 }
@@ -94,17 +93,33 @@ console.log(tagValue);
             return;
         }
         setError(null);
+
         const ObjToSend: ObjToSendType = {
           title: memeDetails.current[0],
           category: memeDetails.current[3],
-          meme
+          description: memeDetails.current[1],
+          source: memeDetails.current[2],
+          tags: tags
         };
-        ObjToSend.description = memeDetails.current[1]
-        ObjToSend.source = memeDetails.current[2]
-        ObjToSend.tags = tags
 
         // ObjToSend.OCR = await getOCR(meme)
+        const formData = new FormData();
+        formData.append("meme", meme);
+        formData.append("body", JSON.stringify(ObjToSend));
 
+        try {
+          const response = await fetch("/api/new", {
+            method: "POST",
+            body: formData
+          })
+
+          const data = await response.json()
+
+          console.log(data);
+          
+        } catch (error) {
+          
+        }
 
 
 
