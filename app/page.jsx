@@ -4,6 +4,7 @@ import TabMobile from "@/components/TabNavigation/TabButtonsMobile";
 import { Suspense } from "react";
 import Skeleton from "@/components/Card/Skeleton";
 import { getContent } from "./utils/getContent";
+import db from "@/db"
 
 export default async function Home({ searchParams }) {
   const { category } = searchParams;
@@ -15,6 +16,9 @@ export default async function Home({ searchParams }) {
     include: 2,
   });
 
+
+  const data = await db.memes.findMany();
+  console.log(data);
   return (
     <main>
       <section className="mx-auto flex flex-col items-center space-y-5 mt-20 mb-32">
