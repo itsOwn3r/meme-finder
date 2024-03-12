@@ -12,7 +12,7 @@ export type ObjToSendType = {
   category: HTMLInputElement | string[] | null | string;
   tags?: string[];
 
-  OCR?: string
+  OCR?: string | null
 }
 
 const NewMemePage = () => {
@@ -94,15 +94,19 @@ console.log(tagValue);
         }
         setError(null);
 
+        // const OCR = await getOCR(meme) // if you have Tesseract installed on your machine, you can use this option
+        const OCR = null // if you have Tesseract installed on your machine, you can use this option
+
         const ObjToSend: ObjToSendType = {
           title: memeDetails.current[0],
           category: memeDetails.current[3],
           description: memeDetails.current[1],
           source: memeDetails.current[2],
-          tags: tags
+          tags: tags,
+          OCR: OCR 
         };
 
-        // ObjToSend.OCR = await getOCR(meme)
+        // console.log(OCR);
         const formData = new FormData();
         formData.append("meme", meme);
         formData.append("body", JSON.stringify(ObjToSend));
@@ -163,21 +167,22 @@ console.log(tagValue);
           <h1 className="w-full text-h5 xl:text-h4 font-bold">
 
             {/* <input type="text" name="title" ref={(ref) => memeDetails.current[0] = ref}  /> */}
-            <input className='w-full text-dim-gray bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Title of Meme' type="text" name="title" onChange={(ref) => detailsRefHandler("title", ref.target.value  as unknown as HTMLInputElement)} />
+            <input className='w-full text-[#858585] border border-t-0  bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Title of Meme' type="text" name="title" onChange={(ref) => detailsRefHandler("title", ref.target.value  as unknown as HTMLInputElement)} />
           </h1>
           <p className="w-full text-text text-base xl:text-h6 2xl:text-h5 max-w-[50ch] text-balance pb-3">
-            <textarea className='w-full text-dim-gray bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Enter Description Here' name="description" onChange={(ref) => detailsRefHandler("description", ref.target.value as unknown as HTMLInputElement)} />
+            <textarea className='w-full border border-t-0 text-[#858585] bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Enter Description Here' name="description" onChange={(ref) => detailsRefHandler("description", ref.target.value as unknown as HTMLInputElement)} />
           </p>
-            <input className='w-1/2 p-1 text-dim-gray bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Enter source...' type="text" name="source" onChange={(ref) => detailsRefHandler("source", ref.target.value as unknown as HTMLInputElement)} />
+            <input className='w-1/2 p-1 border border-t-0 text-[#858585] bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Enter source...' type="text" name="source" onChange={(ref) => detailsRefHandler("source", ref.target.value as unknown as HTMLInputElement)} />
         </div>
 
         <div className="flex flex-col gap-x-2 mt-12 divide-y-2 divide-outline divide-opacity-20 text-xs xl:text-base 2xl:text-h6">
           <div className=" gap-x-1 grid grid-cols-12 border-t-2 border-outline border-opacity-20 py-2">
-            <h2 className=" font-semibold col-span-4">Category</h2>
-            <span className=" col-span-8 text-bg px-1">
-            <select onChange={(ref) => detailsRefHandler("category", ref.target.value as unknown as HTMLInputElement)}>
+            <h2 className=" font-semibold col-span-2">Category</h2>
+            <span className="col-span-10 text-bg px-1">
+            <select onChange={(ref) => detailsRefHandler("category", ref.target.value as unknown as HTMLInputElement)} className='bg-[#3c3c3c] text-h5 rounded-md max-w-[10em] text-[#cbcbcb] px-1'>
                 <option>Dev</option>
                 <option>Dark</option>
+                <option>Kualalampour</option>
             </select>
             </span>
           </div>
@@ -185,7 +190,7 @@ console.log(tagValue);
             <h2 className=" font-semibold col-span-2 pt-2">Tags</h2>
             <span className="flex flex-col mt-2 col-span-10  text-text">
             <input value={tagValue} onChange={e => setTagValue(e.target.value)} onBlur={() => handleTags() }
-          onKeyDown={e => e.key === "Enter" && handleTags() } type="text" name="tag" placeholder="type + enter" className="bg-[#d5d5d5] text-[#000] mr-1 rounded-[10px] outline-none w-full max-w-[50%] p-[5px]"/>
+          onKeyDown={e => e.key === "Enter" && handleTags() } type="text" name="tag" placeholder="type + enter" className="bg-[#3c3c3c] text-[#fff] mr-1 rounded-[10px] outline-none w-full max-w-[50%] p-[5px]"/>
 
             {tags.map((tag, i) => {
 
@@ -205,7 +210,7 @@ console.log(tagValue);
           </div>
           
         <div className='w-full text-center'>
-            <button type='button' onClick={submitHandler} className='mt-2 bg-[#5c5c5c] hover:bg-[#b1b1b1] py-2 px-20 rounded-lg font-bold text-h5'>Submit</button>
+            <button type='button' onClick={submitHandler} className='mt-2 bg-[#004603] hover:bg-[#36853a] py-2 px-20 rounded-lg font-bold text-h5'>Submit</button>
         </div>
         </div>
       </div>
