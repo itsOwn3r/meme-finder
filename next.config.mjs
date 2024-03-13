@@ -11,6 +11,10 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'api.producthunt.com',
         },
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+        },
       ],
     },
 };

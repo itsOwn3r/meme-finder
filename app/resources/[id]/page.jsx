@@ -31,8 +31,7 @@ export async function generateStaticParams() {
   const res = await getContent({
     content_type: "resourcesPage",
   });
-
-  return res.items.data.map((item) => ({
+  return res.items.map((item) => ({
     id: item.id,
   }));
 }
@@ -45,7 +44,8 @@ async function fetchResource({ id }) {
   }, {
     revalidate: 0, // Add revalidation here
   });
-  return res.items.data[0];
+  console.log(res);
+  return res.items[0];
   
 }
 
@@ -63,7 +63,7 @@ export default async function ResourceDetails({ params }) {
             <Image
               priority={true}
               alt={resource.title}
-              src={"/images/memes/" + resource.thumbnail}
+              src={resource.meme}
               className="h-full w-full"
               width={800}
               height={800}
@@ -81,7 +81,7 @@ export default async function ResourceDetails({ params }) {
             <Button
               target="_blank"
               rel="noopener noreferrer"
-              href={resource.link}
+              href={resource.id}
             >
               View Source
             </Button>

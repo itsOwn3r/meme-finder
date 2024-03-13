@@ -15,10 +15,10 @@ export default async function Home({ searchParams }) {
     order: ["fields.title"],
     include: 2,
   });
+console.log(categories);
 
-
-  const data = await db.memes.findMany();
-  console.log(data);
+  // const data = await db.memes.findMany();
+  // console.log(data);
   return (
     <main>
       <section className="mx-auto flex flex-col items-center space-y-5 mt-20 mb-32">
@@ -33,8 +33,8 @@ export default async function Home({ searchParams }) {
         </p>
       </section>
       <section>
-        <TabMobile categories={categories.data} />
-        <Tab categories={categories.data} />
+        <TabMobile categories={categories} />
+        <Tab categories={categories} />
         <Suspense fallback={<Skeleton />}>
           <ResourceContainer
             category={category}

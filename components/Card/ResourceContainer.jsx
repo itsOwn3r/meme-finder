@@ -23,12 +23,12 @@ export default async function ResourceContainer({ category, page, per_page }) {
   return (
     <>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-        {resources.data.map((resource, i) => {
+        {resources.map((resource, i) => {
           return <ResourceCard key={i} resource={resource} />;
         })}
       </div>
       <PaginationControls
-        hasNextPage={resources.data.length === Number(per_page)}
+        hasNextPage={resources.length === Number(per_page)}
         hasPrevPage={Number(page) > 1}
         total={total}
       />

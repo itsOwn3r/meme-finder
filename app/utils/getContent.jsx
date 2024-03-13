@@ -15,7 +15,7 @@
 
 //   return { items, total };
 // }
-
+import db from "@/db"
 const localData = {
   items: [
   ],
@@ -29,12 +29,14 @@ export async function getContent({ tag, category, page, id, limit }) {
   
   //Add a second foo parameter.
   //Query string is now: 'foo=1&bar=2&foo=4'
-
+  const where = {isActive: true}
   if (id) {
     params.append("id", id);
+    where.id = id
   }
   if (category) {
     params.append("category", category);
+    where.category = category
   }
   if (page) {
     params.append("page", page);
@@ -46,11 +48,28 @@ export async function getContent({ tag, category, page, id, limit }) {
   // console.log(`http://localhost/php/meme/?${finalParams}`);
   const res = await fetch(`http://localhost/php/meme/?${finalParams}`);
   const data = await res.json();
+  const currentPage = (page > 1 ? ((page * limit) - limit) : 0) || null;
+  const database = await db.memes.findMany({
+    where: where,
+    // where: {
+    //   isActive: true
+    //   // isActive: true
+    // }
+    // take:  limit || 0,
+    // skip: currentPage || 0,
+    // select: limit || 20
+  },
+  )
+  console.log(where);
+  console.log(limit);
+  console.log(page);
+  console.log(currentPage);
+  console.log(database);
   // console.log(data);
   // console.log(data.length);
   // console.log(data.total);
   return {
-    items: data, 
+    items: database, 
     total: data.total,
   };
 }

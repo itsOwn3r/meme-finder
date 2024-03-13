@@ -1,6 +1,7 @@
 import { ObjToSendType } from "@/app/new/page";
 import { getOCR } from "@/libs/getOCR";
 import { NextRequest, NextResponse } from "next/server";
+import db from "@/db"
 
 export async function POST(req: NextRequest){
     try {
@@ -38,8 +39,22 @@ export async function POST(req: NextRequest){
             }
         }
 
+        const createMeme = await db.memes.create({
+            data: {
+                meme: images[0],
+                title: body.title as string,
+                category: body.category as string,
+                description: body.description as string,
+                ocr: body.OCR ? body.OCR as string : null,
+                source:  body.source as string,
+                tags:   body.tags
+            }
+        })
 
-        return NextResponse.json({ success: true, body, images });
+
+
+
+        return NextResponse.json({ success: true, body, images, createMeme });
 
     } catch (error) {
         return NextResponse.json({ message: (error as Error).message, success: false});

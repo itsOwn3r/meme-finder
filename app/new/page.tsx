@@ -6,9 +6,9 @@ import Image from "next/image";
 import { getOCR } from '@/libs/getOCR';
 
 export type ObjToSendType = {
-  title: HTMLInputElement | string[] | null | string;
+  title: HTMLInputElement | string[] | string;
   description?: HTMLInputElement | string[] | null | string;
-  source?: HTMLInputElement | string[] | null;
+  source?: HTMLInputElement | string[] | null | string;
   category: HTMLInputElement | string[] | null | string;
   tags?: string[];
 
@@ -180,8 +180,9 @@ console.log(tagValue);
             <h2 className=" font-semibold col-span-2">Category</h2>
             <span className="col-span-10 text-bg px-1">
             <select onChange={(ref) => detailsRefHandler("category", ref.target.value as unknown as HTMLInputElement)} className='bg-[#3c3c3c] text-h5 rounded-md max-w-[10em] text-[#cbcbcb] px-1'>
-                <option>Dev</option>
-                <option>Dark</option>
+                <option value="general">General</option>
+                <option value="dev">Dev</option>
+                <option value="dark">Dark</option>
                 <option>Kualalampour</option>
             </select>
             </span>
