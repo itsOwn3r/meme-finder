@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { GoArrowLeft } from 'react-icons/go'
 import Image from "next/image";
 import { getOCR } from '@/libs/getOCR';
+import { useRouter } from 'next/navigation';
 
 export type ObjToSendType = {
   title: HTMLInputElement | string[] | string;
@@ -24,6 +25,7 @@ const NewMemePage = () => {
 console.log(tags);
 console.log(tagValue);
 
+    const router = useRouter();
 
     const memeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e);
@@ -120,7 +122,7 @@ console.log(tagValue);
           const data = await response.json()
 
           console.log(data);
-          
+          router.push(`/meme/${data?.id}`);
         } catch (error) {
           
         }
@@ -182,7 +184,9 @@ console.log(tagValue);
             <select onChange={(ref) => detailsRefHandler("category", ref.target.value as unknown as HTMLInputElement)} className='bg-[#3c3c3c] text-h5 rounded-md max-w-[10em] text-[#cbcbcb] px-1'>
                 <option value="general">General</option>
                 <option value="dev">Dev</option>
+                <option value="ai">AI</option>
                 <option value="dark">Dark</option>
+                <option value="sleep">Sleep</option>
                 <option>Kualalampour</option>
             </select>
             </span>

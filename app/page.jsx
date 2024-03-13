@@ -4,18 +4,22 @@ import TabMobile from "@/components/TabNavigation/TabButtonsMobile";
 import { Suspense } from "react";
 import Skeleton from "@/components/Card/Skeleton";
 import { getContent } from "./utils/getContent";
-import db from "@/db"
+import Search from "@/components/Search/Search";
 
 export default async function Home({ searchParams }) {
   const { category } = searchParams;
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "20";
-  const { items: categories } = await getContent({
+  const search = searchParams["search"] ?? null;
+  const { items: categories, total } = await getContent({
+    category,
+    search,
     content_type: "resourcesPage",
     order: ["fields.title"],
     include: 2,
   });
-console.log(categories);
+// console.log(categories);
+console.log(search);
 
   // const data = await db.memes.findMany();
   // console.log(data);
@@ -31,6 +35,8 @@ console.log(categories);
         <p className="text-text mx-auto text-base text-center xl:text-h6 2xl:text-h5 pt-5 max-w-[50ch]">
           You can search through your memes by title, tag, description and text of the Meme(OCR)
         </p>
+
+        <Search />
       </section>
       <section>
         <TabMobile categories={categories} />
@@ -40,6 +46,7 @@ console.log(categories);
             category={category}
             page={page}
             per_page={per_page}
+            total={total}
           />
         </Suspense>
       </section>

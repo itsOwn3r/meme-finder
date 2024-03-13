@@ -14,16 +14,16 @@ const overusedgrotesk = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://pillarstack.com"),
+  metadataBase: new URL("https://meme.own3r.me"),
   alternates: {
     canonical: "/",
     languages: {
       "en-US": "/en-US",
     },
   },
-  title: "Pillarstack — Resources for web developers and designers",
+  title: "Meme Finder",
   description:
-    "Assorted resources for frontend developers and web designers. Explore curated and handpicked goodies that enhance your workflow and cultivate your growth.",
+    "A great project to keep track of your Memes!",
   robots: {
     index: true,
     follow: true,
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${overusedgrotesk.variable}`}>
       <head>
-        <link rel="canonical" href="https://pillarstack.com" />
+        <link rel="canonical" href="https://own3r.me" />
         <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="font-overusedgrotesk antialiased bg-bg section-padding  text-accent box-border">

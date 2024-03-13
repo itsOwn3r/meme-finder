@@ -2,7 +2,6 @@ import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 
 export default function Button({ children, href, ...props }) {
-  console.log(href);
   return (
     <Link
       href={href}

@@ -54,7 +54,7 @@ export async function POST(req: NextRequest){
 
 
 
-        return NextResponse.json({ success: true, body, images, createMeme });
+        return NextResponse.json({ success: true, images, id: createMeme.id });
 
     } catch (error) {
         return NextResponse.json({ message: (error as Error).message, success: false});

@@ -79,11 +79,9 @@ export default async function ResourceDetails({ params }) {
               {resource.description}
             </p>
             <Button
-              target="_blank"
-              rel="noopener noreferrer"
-              href={resource.id}
+              href={`/?category=${resource.category}`}
             >
-              View Source
+              View All <span className="uppercase">&apos;{resource.category}&apos;</span> memes
             </Button>
           </div>
 

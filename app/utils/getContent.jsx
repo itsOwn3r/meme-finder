@@ -22,7 +22,7 @@ const localData = {
   total: 0, 
 };
 
-export async function getContent({ tag, category, page, id, limit }) {
+export async function getContent({ tag, category, page, id, limit, search }) {
   // console.log(id);
   let url = new URL("http://localhost/php/meme/");
   let params = new URLSearchParams(url.search);
@@ -38,6 +38,38 @@ export async function getContent({ tag, category, page, id, limit }) {
     params.append("category", category);
     where.category = category
   }
+  console.log(search);
+  if (!search) {
+    search = "someRandomStringThatNoOneEverHeardOf";
+    where.OR = undefined
+  }else{
+    // params.append("category", category);
+    where.OR = [
+      {
+      title: {
+      contains: search
+      }
+    },
+      {
+        description: {
+        contains: search
+      }
+    },
+      {
+        ocr: {
+        contains: search
+      }
+    },
+      {
+        source: {
+        contains: search
+      }
+    },
+    ]
+  
+  }
+  console.log(where);
+  
   if (page) {
     params.append("page", page);
   }
@@ -46,8 +78,36 @@ export async function getContent({ tag, category, page, id, limit }) {
   }
   const finalParams = params.toString();
   // console.log(`http://localhost/php/meme/?${finalParams}`);
-  const res = await fetch(`http://localhost/php/meme/?${finalParams}`);
-  const data = await res.json();
+  // const res = await fetch(`http://localhost/php/meme/?${finalParams}`);
+  // const data = await res.json();
+  console.log(search);
+  const database2 = await db.memes.findMany({
+    where: {
+      OR:[
+        {
+        title: {
+        contains: search
+        }
+      },
+        {
+          description: {
+          contains: search
+        }
+      },
+        {
+          ocr: {
+          contains: search
+        }
+      },
+        {
+          source: {
+          contains: search
+        }
+      },
+      ]
+    }
+  })
+  console.log(database2);
   const currentPage = (page > 1 ? ((page * limit) - limit) : 0) || null;
   const database = await db.memes.findMany({
     where: where,
@@ -55,21 +115,28 @@ export async function getContent({ tag, category, page, id, limit }) {
     //   isActive: true
     //   // isActive: true
     // }
-    // take:  limit || 0,
-    // skip: currentPage || 0,
+    take:  limit,
+    skip: currentPage || 0,
     // select: limit || 20
   },
   )
+  const total = await db.memes.count({
+    where: where,
+  })
+  console.log(total);
+
+
   console.log(where);
+
   console.log(limit);
   console.log(page);
   console.log(currentPage);
-  console.log(database);
+  // console.log(database);
   // console.log(data);
   // console.log(data.length);
   // console.log(data.total);
   return {
     items: database, 
-    total: data.total,
+    total: total,
   };
 }
