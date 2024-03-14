@@ -39,19 +39,31 @@ export async function POST(req: NextRequest){
             }
         }
 
+        const ocrHandler = await getOCR(images[0] ? images[0] : null)
+
         const createMeme = await db.memes.create({
             data: {
                 meme: images[0],
                 title: body.title as string,
                 category: body.category as string,
                 description: body.description as string,
-                ocr: body.OCR ? body.OCR as string : null,
+                ocr: ocrHandler,
                 source:  body.source as string,
-                tags:   body.tags
+                tags:   body.tags,
             }
         })
 
-
+        // const textofPic = await getOCR(Buffer.from(memes[0]))
+        // const reader = new FileReader();
+        // reader.onload = async (event) => {
+        // const arrayBuffer = memes[0];
+        // const uint8Array = new Uint8Array(arrayBuffer);
+        // console.log(uint8Array);
+        // const textofPic = await getOCR(uint8Array)
+        // console.log(textofPic);        
+        // }
+        // const textofPic = await getOCR(images[0])
+        // console.log(textofPic);
 
 
         return NextResponse.json({ success: true, images, id: createMeme.id });

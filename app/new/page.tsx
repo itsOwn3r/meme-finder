@@ -122,7 +122,9 @@ console.log(tagValue);
           const data = await response.json()
 
           console.log(data);
-          router.push(`/meme/${data?.id}`);
+          if (data.success) {
+            router.push(`/meme/${data?.id}`);
+          }
         } catch (error) {
           
         }
@@ -185,8 +187,10 @@ console.log(tagValue);
                 <option value="general">General</option>
                 <option value="dev">Dev</option>
                 <option value="ai">AI</option>
+                <option value="linux">Linux</option>
                 <option value="dark">Dark</option>
                 <option value="sleep">Sleep</option>
+                <option value="not a meme">Not a Meme</option>
                 <option>Kualalampour</option>
             </select>
             </span>

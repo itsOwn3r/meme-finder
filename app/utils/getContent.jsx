@@ -16,6 +16,7 @@
 //   return { items, total };
 // }
 import db from "@/db"
+import { getOCR } from "@/libs/getOCR";
 const localData = {
   items: [
   ],
@@ -39,7 +40,7 @@ export async function getContent({ tag, category, page, id, limit, search }) {
     where.category = category
   }
   console.log(search);
-  
+
   if (!search) {
     search = "someRandomStringThatNoOneEverHeardOf";
     where.OR = undefined
@@ -57,6 +58,11 @@ export async function getContent({ tag, category, page, id, limit, search }) {
       }
     },
       {
+        category: {
+        contains: search
+      }
+    },
+      {
         ocr: {
         contains: search
       }
@@ -64,6 +70,11 @@ export async function getContent({ tag, category, page, id, limit, search }) {
       {
         source: {
         contains: search
+      }
+    },
+      {
+        tags: {
+        has: search
       }
     },
     ]
@@ -82,33 +93,38 @@ export async function getContent({ tag, category, page, id, limit, search }) {
   // const res = await fetch(`http://localhost/php/meme/?${finalParams}`);
   // const data = await res.json();
   console.log(search);
-  const database2 = await db.memes.findMany({
-    where: {
-      OR:[
-        {
-        title: {
-        contains: search
-        }
-      },
-        {
-          description: {
-          contains: search
-        }
-      },
-        {
-          ocr: {
-          contains: search
-        }
-      },
-        {
-          source: {
-          contains: search
-        }
-      },
-      ]
-    }
-  })
-  console.log(database2);
+  // const database2 = await db.memes.findMany({
+  //   where: {
+  //     OR:[
+  //       {
+  //       title: {
+  //       contains: search
+  //       }
+  //     },
+  //       {
+  //         description: {
+  //         contains: search
+  //       }
+  //     },
+  //       {
+  //         category: {
+  //         contains: search
+  //       }
+  //     },
+  //       {
+  //         ocr: {
+  //         contains: search
+  //       }
+  //     },
+  //       {
+  //         source: {
+  //         contains: search
+  //       }
+  //     },
+  //     ]
+  //   }
+  // })
+  // console.log(database2);
   const currentPage = (page > 1 ? ((page * limit) - limit) : 0) || null;
   const database = await db.memes.findMany({
     where: where,
@@ -124,16 +140,17 @@ export async function getContent({ tag, category, page, id, limit, search }) {
   const total = await db.memes.count({
     where: where,
   })
-  console.log(total);
+  // console.log(total);
 
 
-  console.log(where);
+  // console.log(where);
 
-  console.log(limit);
-  console.log(page);
-  console.log(currentPage);
-  console.log(database);
-  // console.log(data);
+  // console.log(limit);
+  // console.log(page);
+  // console.log(currentPage);
+  // console.log(database);
+  // const terp = await getOCR(database[12]["meme"])
+  // console.log(terp);
   // console.log(data.length);
   // console.log(data.total);
   return {
