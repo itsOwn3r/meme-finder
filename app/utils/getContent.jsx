@@ -39,6 +39,7 @@ export async function getContent({ tag, category, page, id, limit, search }) {
     where.category = category
   }
   console.log(search);
+  
   if (!search) {
     search = "someRandomStringThatNoOneEverHeardOf";
     where.OR = undefined
@@ -131,7 +132,7 @@ export async function getContent({ tag, category, page, id, limit, search }) {
   console.log(limit);
   console.log(page);
   console.log(currentPage);
-  // console.log(database);
+  console.log(database);
   // console.log(data);
   // console.log(data.length);
   // console.log(data.total);

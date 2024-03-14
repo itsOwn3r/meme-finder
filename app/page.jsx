@@ -47,6 +47,7 @@ console.log(search);
             page={page}
             per_page={per_page}
             total={total}
+            search={search}
           />
         </Suspense>
       </section>

@@ -6,9 +6,10 @@ import ResourceCard from "@/components/Card/ResourceCard";
 import PaginationControls from "../Pagination/PaginationControls";
 
 
-export default async function ResourceContainer({ category, page, per_page, total }) {
+export default async function ResourceContainer({ category, page, per_page, total, search }) {
   const {items: memes} = await getContent({
     content_type: "memesPage",
+    search,
     skip: Number(page - 1) * Number(per_page),
     limit: Number(per_page),
     order: ["fields.title"],
