@@ -1,4 +1,2 @@
 User-Agent: *
 Allow: /
-
-Sitemap: https://www.pillarstack.com/sitemap.xml

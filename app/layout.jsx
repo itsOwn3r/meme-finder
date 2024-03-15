@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
-import "./globals.css";
 import Navbar from "@/components/Header/Navbar";
 import Footer from "@/components/Footer/Footer";
+import "./globals.css";
 
 const overusedgrotesk = localFont({
   src: [
@@ -17,9 +17,6 @@ export const metadata = {
   metadataBase: new URL("https://meme.own3r.me"),
   alternates: {
     canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
   },
   title: "Meme Finder",
   description:
