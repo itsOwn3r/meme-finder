@@ -1,18 +1,31 @@
-# Pillarstack - Assorted resources for frontend devs & web designers
+# Meme Finder
 
-![Project Banner](https://ph-files.imgix.net/ff09f0f2-e300-4907-b7c3-0684539ba35f.png?auto=compress&codec=mozjpeg&cs=strip&auto=format&fm=pjpg&w=1100&h=578&fit=max&dpr=1)
 
-## How to contribute
+This is a great project to keep track of your **Memes**. This project is made to be run on localhost, where [Tesseract](https://github.com/tesseract-ocr/tesseract) extracts text from the image and saves it to the database; alongside all the other data that can be set for the Meme. [See Here](https://meme.own3r.me/new)
 
-You can contribute in multiple ways:
-1. **Submit resources**: You can submit resources via this google form [link](https://forms.gle/PftXkai3sNZquWu68)
-2. **Improving code**: If you would like to include a feature, please open an [issue](https://github.com/huyngxyz/Pillarstack/issues) or send a pull request!
-3. **Submit feedback**: If you prefer to send feedback via a form, fill the form [here](https://forms.gle/s84TNQcUX1P22bTE7)
+You can search for the Memes, by:
 
-[More information](https://github.com/huyngxyz/Pillarstack/blob/main/CONTRIBUTE.md)
+`title`
 
-Thanks for checking out the project and making the project even better for everyone : )
+`description`
 
-## Support the project
+`OCR`
 
-<a href="https://www.producthunt.com/posts/pillarstack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pillarstack" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=427808&theme=light" alt="Pillarstack - Assorted&#0032;resources&#0032;for&#0032;frontend&#0032;developers&#0032;and&#0032;web&#0032;designers | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+`category`
+
+`source`
+
+`tags`
+
+
+
+
+
+![Meme-Finder-min](https://github.com/itsOwn3r/meme-finder/assets/119396660/73f6afda-8591-44cd-85f7-712902a4856a)
+
+
+
+## Keep in mind
+* Sending new Memes: In `prisma.schema` I've set `isActive` to `false` by default. in this case, after sending a new Meme, 404 page should appear. if `isActive` is set to `true`, you would be redirected to the new Meme's page.
+* Tesseract: If you want to use Tesseract, after installing it, you should set an environment variable `IS_OCR_ACTIVE="yes"`.
+* Uploading images: Im using Cloudinary here, so don't forget to set `cloud_name` and `upload_preset` as environment variables.
