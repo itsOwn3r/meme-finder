@@ -5,7 +5,7 @@ import { getContent } from "@/app/utils/getContent";
 import { GoArrowLeft } from "react-icons/go";
 import ErrorPage from "@/app/not-found"
 
-export async function generateMetaData({ params }: { params: { id: string }}) {
+export async function generateMetadata({ params }: { params: { id: string }}) {
   try {
     const meme = await fetchMeme(params);
     if (!meme)
@@ -16,7 +16,7 @@ export async function generateMetaData({ params }: { params: { id: string }}) {
       };
     return {
       title: meme.title,
-      description: meme.description,
+      description: meme.description ,
     };
   } catch (error) {
     console.error(error);

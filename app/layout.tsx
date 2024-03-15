@@ -1,7 +1,7 @@
+import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Header/Navbar";
 import Footer from "@/components/Footer/Footer";
-import "./globals.css";
 
 const overusedgrotesk = localFont({
   src: [

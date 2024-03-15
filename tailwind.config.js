@@ -1,7 +1,7 @@
-import type { Config } from "tailwindcss";
+/** @type {import('next').NextConfig} */
 const colors = require('tailwindcss/colors')
 
-const config: Config = {
+const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
