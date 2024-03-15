@@ -5,7 +5,7 @@ export const getOCR = async (image: string | null) => {
         
     try {
 
-        const execCommand = execSync(`tesseract ${image} stdout -l eng+fas --oem 1 --psm 3`);
+        const execCommand = execSync(`tesseract ${image} stdout -l eng+fas --oem 1 --psm 3`); // make sure you have Tesseract on the system.
         const stringified = execCommand.toString();
         let sanatized = stringified.replaceAll("\n", " ");
         sanatized = sanatized.replaceAll("\r", " ");

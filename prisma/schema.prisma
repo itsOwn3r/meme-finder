@@ -17,7 +17,7 @@ model Memes {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   meme        String
   title       String
-  isActive    Boolean @default(true)
+  isActive    Boolean @default(false)
   ocr         String?
   description String?
   source      String?

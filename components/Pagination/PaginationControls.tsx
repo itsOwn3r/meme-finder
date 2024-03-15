@@ -5,6 +5,10 @@ export default function PaginationControls({
   total,
   hasNextPage,
   hasPrevPage,
+}: {
+  total: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();

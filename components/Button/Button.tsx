@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 
-export default function Button({ children, href, ...props }) {
+interface ButtonProps {
+  children: React.ReactNode;
+  href: string;
+}
+
+export default function Button({ children, href }: ButtonProps) {
   return (
     <Link
       href={href}
-      {...props}
       className="text-bg rounded-lg font-semibold bg-zinc-200 hover:bg-gradient group sm:px-5 sm:py-3 px-3 py-2 flex items-center gap-x-1 flex-shrink-0 transition-all duration-200 text-base xl:text-h6 2xl:text-h5"
     >
       <span>{children}</span>

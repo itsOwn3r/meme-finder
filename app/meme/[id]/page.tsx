@@ -5,7 +5,7 @@ import { getContent } from "@/app/utils/getContent";
 import { GoArrowLeft } from "react-icons/go";
 import ErrorPage from "@/app/not-found"
 
-export async function generateMetaData({ params }) {
+export async function generateMetaData({ params }: { params: { id: string }}) {
   try {
     const meme = await fetchMeme(params);
     if (!meme)
@@ -35,18 +35,14 @@ export async function generateStaticParams() {
   }));
 }
 
-async function fetchMeme({ id }) {
+async function fetchMeme({ id } : { id: string }) {
   const res = await getContent({
     "id": id,
-  }, {
-    revalidate: 0, // Add revalidation here
   });
-  // console.log(res);
   return res.items[0];
-  
 }
 
-export default async function MemeDetails({ params }) {
+export default async function MemeDetails({ params }: { params: { id: string }}) {
   const meme = await fetchMeme(params);
   if (!meme) {
     return <ErrorPage />

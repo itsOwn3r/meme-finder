@@ -1,13 +1,12 @@
+import { getContentProps } from "@/app/utils/getContent";
+import { Memes } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 
-export default function MemeCard({ memeContent }) {
-  const { title, category, meme, tags, id } = memeContent;
-
-  // Extract tag names from the tags reference field
-  const tagNames = tags.map((tag) => tag.tag);
-  tagNames.sort()
+export default function MemeCard({ memeContent }: { memeContent: Memes }) {
+  const { title, category, meme, tags, id }: Memes = memeContent;
+  tags.sort()
 
   return (
     <Link href={`/meme/${id}`} className="bg-dark-charcoal border-4 border-outline rounded-xl border-opacity-15  overflow-hidden w-full hover:border-opacity-50 transition-colors duration-150 ease-in group @container ">
@@ -24,7 +23,7 @@ export default function MemeCard({ memeContent }) {
         <div>
           <h2 className="font-semibold text-h6 xl:text-h5">{title}</h2>
           <div className="tags">
-            {tagNames.map((tag, index) => (
+            {tags.map((tag, index) => (
               <span className="pr-3 text-xs xl:text-sm 2xl:text-base text-light-gray" key={index}>
                 {tag}
               </span>

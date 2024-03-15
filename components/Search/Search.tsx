@@ -18,7 +18,11 @@ const Search = () => {
   return (
     <div className="mt-10 flex flex-col">
         <p className="text-h4">Search through your memes:</p>
-        <input onBlur={(e) => handleSearch(e.target.value)} type="text" name="search" className="bg-transparent shadow-shine p-2 rounded-lg mt-2" placeholder={currentSearchParams ? currentSearchParams : "Search Here..."} />
+        <input onBlur={(e) => handleSearch(e.target.value)} onKeyDown={e => {
+          if(e.key === "Enter") {
+          const target = e.target as HTMLTextAreaElement;
+          target.blur();
+        }}} type="text" name="search" className="bg-transparent shadow-shine p-2 rounded-lg mt-2" placeholder={currentSearchParams ? currentSearchParams : "Search Here..."} />
   </div>
   )
 }

@@ -3,10 +3,10 @@ import Tab from "@/components/TabNavigation/TabButtons";
 import TabMobile from "@/components/TabNavigation/TabButtonsMobile";
 import { Suspense } from "react";
 import Skeleton from "@/components/Card/Skeleton";
-import { getContent } from "./utils/getContent";
+import { getContent, getContentProps } from "./utils/getContent";
 import Search from "@/components/Search/Search";
 
-export default async function Home({ searchParams }) {
+export default async function Home({ searchParams }: { searchParams: getContentProps }) {
   const { category } = searchParams;
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "20";

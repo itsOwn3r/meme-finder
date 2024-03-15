@@ -1,5 +1,6 @@
 "use client";
 
+import { Memes } from "@prisma/client";
 // Note: This component is used to filter resources by category
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -7,21 +8,21 @@ import { GoPlus } from "react-icons/go";
 
 // ... (other imports)
 
-export default function TabButtons({ categories }) {
+export default function TabButtons({ categories }: { categories: Memes[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
 
-  const categoryCount = {};
+  const categoryCount:{ [key: string]: number } = {};
   categories.forEach((meme) => {
-    const categoryItem = meme.category;
+    const categoryItem = meme.category as string;
     categoryCount[categoryItem] = (categoryCount[categoryItem] || 0) + 1;
   });
 
   // Extract category from the URL query
   const activeCategory = searchParams.get("category") || "";
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     setIsOpen(false);
     router.push(`/?category=${category}`, { scroll: false });
   };

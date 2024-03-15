@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react'
 import Link from 'next/link'
 import { GoArrowLeft } from 'react-icons/go'
 import Image from "next/image";
-import { getOCR } from '@/libs/getOCR';
 import { useRouter } from 'next/navigation';
 
 export type ObjToSendType = {
@@ -63,10 +62,10 @@ const NewMemePage = () => {
             return;
           }
 
-          setTags([...tags, tagValue])
+          setTags([...tags, tagValue]);
         }
 
-        setTagValue("")
+        setTagValue("");
       }
 
     const submitHandler = async () => {
@@ -77,8 +76,7 @@ const NewMemePage = () => {
         }
         setError(null);
 
-        // const OCR = await getOCR(meme) // if you have Tesseract installed on your machine, you can use this option
-        const OCR = null // if you have Tesseract installed on your machine, you can use this option
+        const OCR = null;
 
         const ObjToSend: ObjToSendType = {
           title: memeDetails.current[0],
@@ -99,13 +97,14 @@ const NewMemePage = () => {
             body: formData
           })
 
-          const data = await response.json()
+          const data = await response.json();
 
           if (data.success) {
             router.push(`/meme/${data?.id}`);
           }
         } catch (error) {
-          
+          console.log(error);
+          setError((error as Error).message);
         }
 
     }
@@ -145,8 +144,6 @@ const NewMemePage = () => {
                     </div>
         )}
           <h1 className="w-full text-h5 xl:text-h4 font-bold">
-
-            {/* <input type="text" name="title" ref={(ref) => memeDetails.current[0] = ref}  /> */}
             <input className='w-full text-[#858585] border border-t-0  bg-transparent rounded-2xl p-[0 2px 0 10px] pl-3' placeholder='Title of Meme' type="text" name="title" onChange={(ref) => detailsRefHandler("title", ref.target.value  as unknown as HTMLInputElement)} />
           </h1>
           <p className="w-full text-text text-base xl:text-h6 2xl:text-h5 max-w-[50ch] text-balance pb-3">

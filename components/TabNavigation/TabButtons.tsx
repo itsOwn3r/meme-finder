@@ -3,16 +3,17 @@
 // Note: This component is used to filter resources by category
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { Memes } from "@prisma/client";
 
 // ... (other imports)
 
-export default function TabButtons({ categories }) {
+export default function TabButtons({ categories }: { categories: Memes[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const categoryCount = {};
+  
+  const categoryCount:{ [key: string]: number } = {};
   categories.forEach((meme) => {
-    const categoryItem = meme.category;
+    const categoryItem = meme.category as string;
     categoryCount[categoryItem] = (categoryCount[categoryItem] || 0) + 1;
   });
 

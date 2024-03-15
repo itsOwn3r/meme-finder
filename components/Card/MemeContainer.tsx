@@ -1,19 +1,18 @@
 // Library
-import { getContent } from "@/app/utils/getContent";
+import { getContent, getContentProps } from "@/app/utils/getContent";
 
 // Components
 import MemeCard from "@/components/Card/MemeCard";
 import PaginationControls from "../Pagination/PaginationControls";
 
 
-export default async function MemeContainer({ category, page, per_page, total, search }) {
+export default async function MemeContainer({ category, page, per_page, total, search }: getContentProps & {
+  total: number | string;
+
+}) {
   const {items: memes} = await getContent({
-    content_type: "memesPage",
     search,
-    skip: Number(page - 1) * Number(per_page),
-    limit: Number(per_page),
-    order: ["fields.title"],
-    "fields.category.sys.contentType.sys.id": "categories",
+    limit: per_page ? Number(per_page) : null,
     page: page === "all" ? null : Number(page),
     category: category === "all" ? null : category,
   });
@@ -28,7 +27,7 @@ export default async function MemeContainer({ category, page, per_page, total, s
       <PaginationControls
         hasNextPage={memes.length === Number(per_page)}
         hasPrevPage={Number(page) > 1}
-        total={total}
+        total={Number(total)}
       />
     </>
   );
