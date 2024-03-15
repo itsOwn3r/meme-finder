@@ -1,9 +1,7 @@
 import { execSync } from 'child_process'
 
 export const getOCR = async (image: string | null) => {
-    console.log(process.env.IS_OCR_ACTIVE);
     if (process.env.IS_OCR_ACTIVE === "yes" || image !== null) {
-        console.log("Holla");
         
     try {
 

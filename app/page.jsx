@@ -1,11 +1,10 @@
-import ResourceContainer from "@/components/Card/ResourceContainer";
+import MemeContainer from "@/components/Card/MemeContainer";
 import Tab from "@/components/TabNavigation/TabButtons";
 import TabMobile from "@/components/TabNavigation/TabButtonsMobile";
 import { Suspense } from "react";
 import Skeleton from "@/components/Card/Skeleton";
 import { getContent } from "./utils/getContent";
 import Search from "@/components/Search/Search";
-import db from "@/db";
 
 export default async function Home({ searchParams }) {
   const { category } = searchParams;
@@ -15,23 +14,8 @@ export default async function Home({ searchParams }) {
   const { items: categories, total } = await getContent({
     category,
     search,
-    content_type: "resourcesPage",
-    order: ["fields.title"],
-    include: 2,
   });
-// console.log(categories);
-console.log(search);
 
-  // const data = await db.memes.findMany();
-  // console.log(data);
-  // const upIt = await db.memes.updateMany({
-  //   where: {
-  //     ocr: null
-  //   },
-  //   data: {
-  //     ocr
-  //   }
-  // })
   return (
     <main>
       <section className="mx-auto flex flex-col items-center space-y-5 mt-20 mb-32">
@@ -51,7 +35,7 @@ console.log(search);
         <TabMobile categories={categories} />
         <Tab categories={categories} />
         <Suspense fallback={<Skeleton />}>
-          <ResourceContainer
+          <MemeContainer
             category={category}
             page={page}
             per_page={per_page}

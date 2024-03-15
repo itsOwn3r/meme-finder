@@ -2,14 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 
-export default function ResourceCard({ resource }) {
-  const { title, category, meme, tags, id } = resource;
+export default function MemeCard({ memeContent }) {
+  const { title, category, meme, tags, id } = memeContent;
 
   // Extract tag names from the tags reference field
   const tagNames = tags.map((tag) => tag.tag);
   tagNames.sort()
 
-// console.log(resource);
   return (
     <Link href={`/meme/${id}`} className="bg-dark-charcoal border-4 border-outline rounded-xl border-opacity-15  overflow-hidden w-full hover:border-opacity-50 transition-colors duration-150 ease-in group @container ">
       <div className=" bg-super-dark-gray flex relative items-center justify-center pb-[50%] pt-[50%] rounded-b-2xl">

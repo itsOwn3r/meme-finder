@@ -11,8 +11,8 @@ export default function TabButtons({ categories }) {
   const searchParams = useSearchParams();
 
   const categoryCount = {};
-  categories.forEach((resource) => {
-    const categoryItem = resource.category;
+  categories.forEach((meme) => {
+    const categoryItem = meme.category;
     categoryCount[categoryItem] = (categoryCount[categoryItem] || 0) + 1;
   });
 

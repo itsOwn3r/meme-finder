@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Search = () => {
     const router = useRouter();
@@ -15,11 +15,10 @@ const Search = () => {
         params.set("search", search)
         router.push("/" + "?" + params, { scroll: false });
     }
-    console.log(params);
   return (
     <div className="mt-10 flex flex-col">
         <p className="text-h4">Search through your memes:</p>
-        <input onBlur={(e) => handleSearch(e.target.value)} type="text" name="search" className="bg-transparent border p-2 rounded-lg mt-2" placeholder={currentSearchParams ? currentSearchParams : "Search Here..."} />
+        <input onBlur={(e) => handleSearch(e.target.value)} type="text" name="search" className="bg-transparent shadow-shine p-2 rounded-lg mt-2" placeholder={currentSearchParams ? currentSearchParams : "Search Here..."} />
   </div>
   )
 }

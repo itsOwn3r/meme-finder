@@ -22,28 +22,15 @@ const NewMemePage = () => {
     const memeDetails = useRef<(HTMLInputElement | string[] | null)[]>([]);
     const [tags, setTags] = useState<string[]>([])
     const [tagValue, setTagValue] = useState("")
-console.log(tags);
-console.log(tagValue);
 
     const router = useRouter();
 
     const memeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e);
         if (e.target.files) {
-            console.log(e.target.files[0]);
             setMeme(e.target.files[0])
-            
         }
-            
-// (async () => {
-//     const worker = await createWorker(['eng', 'fas']);
-//     const ret = await worker.recognize(e.target.files[0]);
-//     console.log(ret.data.text);
-//     await worker.terminate();
-//   })();
 
     }
-
 
 
     const detailsRefHandler = (type: string, ref: HTMLInputElement) =>{
@@ -68,12 +55,6 @@ console.log(tagValue);
         }
 
     }
-    console.log(memeDetails.current[0]);
-    console.log(memeDetails.current[1]);
-    console.log(memeDetails.current[2]);
-    console.log(memeDetails.current[3]);
-    console.log(memeDetails.current[4]);
-    console.log(meme)
 
     const handleTags = () =>{
         if (tagValue !== "") {
@@ -108,7 +89,6 @@ console.log(tagValue);
           OCR: OCR 
         };
 
-        // console.log(OCR);
         const formData = new FormData();
         formData.append("meme", meme);
         formData.append("body", JSON.stringify(ObjToSend));
@@ -121,7 +101,6 @@ console.log(tagValue);
 
           const data = await response.json()
 
-          console.log(data);
           if (data.success) {
             router.push(`/meme/${data?.id}`);
           }
@@ -129,15 +108,12 @@ console.log(tagValue);
           
         }
 
-
-
-        console.log(ObjToSend);
     }
 
 
   return (
     <section className="mt-8">
-    <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2">
+    <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2 max-w-[7em]">
       <GoArrowLeft color="#F7F7F7" size={24} />
       <span className=" font-semibold text-text text-base">Back</span>
     </Link>

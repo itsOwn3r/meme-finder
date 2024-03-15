@@ -53,18 +53,6 @@ export async function POST(req: NextRequest){
             }
         })
 
-        // const textofPic = await getOCR(Buffer.from(memes[0]))
-        // const reader = new FileReader();
-        // reader.onload = async (event) => {
-        // const arrayBuffer = memes[0];
-        // const uint8Array = new Uint8Array(arrayBuffer);
-        // console.log(uint8Array);
-        // const textofPic = await getOCR(uint8Array)
-        // console.log(textofPic);        
-        // }
-        // const textofPic = await getOCR(images[0])
-        // console.log(textofPic);
-
 
         return NextResponse.json({ success: true, images, id: createMeme.id });
 
