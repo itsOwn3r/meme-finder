@@ -9,9 +9,12 @@
     "start_url": "/",
     "share_target": {
         "action": "share.html",
-        "method": "POST",
-        "enctype": "multipart/form-data",
-        "params": { "url": "link" }
+        "method": "GET",
+        "params": {
+          "title": "title",
+          "text": "text",
+          "url": "url"
+        }
     },
     "icons": [
       {
