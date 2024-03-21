@@ -9,11 +9,18 @@
     "start_url": "/",
     "share_target": {
         "action": "share.html",
-        "method": "GET",
+        "enctype": "multipart/form-data",
+        "method": "POST",
         "params": {
           "title": "title",
           "text": "text",
-          "url": "url"
+          "url": "url",
+          "files": [
+            {
+              "name": "media[]",
+              "accept": ["image/*"]
+            }
+          ]
         }
     },
     "icons": [
