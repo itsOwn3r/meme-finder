@@ -1,0 +1,12 @@
+<html>
+<link rel="manifest" href="manifest.json">
+<script>
+  window.addEventListener('load', () => {
+    const parsedUrl = new URL(window.location);
+    const { searchParams } = parsedUrl;
+    console.log("Title shared:", searchParams.get('name'));
+    console.log("Text shared:", searchParams.get('description'));
+    console.log("URL link shared:", searchParams.get('link'));
+    console.log("URL shared:", searchParams.get('url'));
+  });
+</script>
