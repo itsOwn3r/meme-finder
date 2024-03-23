@@ -33,6 +33,7 @@ const nextConfigFunction = async (phase) => {
     const withPWA = (await import("@ducanh2912/next-pwa")).default({
       dest: "public",
       swSrc: '/service-worker.js',
+      register: true,
       sw: '/service-worker.js',
     });
     return withPWA(nextConfig);
