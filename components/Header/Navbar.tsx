@@ -1,6 +1,6 @@
-import Button from "../Button/Button";
 import MemeFinderLogo from "../SVGs/memeFinderLogo";
 import Link from "next/link";
+import AddNewButton from "./Add-New-Button";
 
 export default function Navbar() {
   return (
@@ -14,9 +14,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-x-8">
-          <Button href="/new">Add a New Meme</Button>
-        </div>
+        <AddNewButton />
       </nav>
     </header>
   );

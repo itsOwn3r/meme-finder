@@ -111,7 +111,7 @@ const EditMemePage = ({memes}: {memes: Memes}) => {
 
     }
 
-    console.log(memes);
+    // console.log(memes);
 
     useEffect(() => {
         detailsRefHandler("title", memes.title  as unknown as HTMLInputElement)
