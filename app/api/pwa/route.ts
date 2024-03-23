@@ -52,7 +52,7 @@ export async function POST(req: NextRequest){
             })
             
             
-            return NextResponse.redirect(process.env.NEXT_PUBLIC_URL!, { status: 302 });
+            return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL!}/edit/${createMeme.id}`, { status: 302 });
             
         } catch (error) {
         return NextResponse.json({ message: (error as Error).message, success: false});

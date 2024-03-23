@@ -2,7 +2,7 @@ import Button from "@/components/Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { getContent } from "@/app/utils/getContent";
-import { GoArrowLeft } from "react-icons/go";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import ErrorPage from "@/app/not-found"
 
 export async function generateMetadata({ params }: { params: { id: string }}) {
@@ -49,10 +49,19 @@ export default async function MemeDetails({ params }: { params: { id: string }})
   }
   return (
     <section className="mt-8">
+      <div className="w-full flex items-center justify-between gap-x-1 pl-2">
       <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2 max-w-[7em]">
         <GoArrowLeft color="#F7F7F7" size={24} />
         <span className=" font-semibold text-text text-base">Back</span>
-      </Link>
+      </Link>     
+         
+      <Link scroll={false} href={`/edit/${params.id}`} className="flex items-center justify-end gap-x-1 pl-2 max-w-[7em]">
+        <span className=" font-semibold text-text text-base">Edit</span>
+        <GoArrowRight color="#F7F7F7" size={24} />
+      </Link>     
+
+      </div>
+
       <div className="flex flex-col md:flex-row mt-5 gap-x-10 lg:gap-x-16 justify-center items-center">
         <div className=" bg-super-dark-gray flex relative items-center justify-center md:pb-[25%] md:pt-[25%] pt-[50%] pb-[50%] rounded-2xl w-full md:w-1/2 border-4 border-outline border-opacity-15">
           <div className="absolute w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
