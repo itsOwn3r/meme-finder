@@ -2,6 +2,26 @@ import { getOCR } from "@/libs/getOCR";
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/db"
 
+
+export async function GET(req: NextRequest){
+    try {
+        const parsedUrl = new URL(req.url);
+        console.log(parsedUrl);
+        // searchParams.get() will properly handle decoding the values.
+        console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
+        console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
+        console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
+        // const formData = await req.formData();
+        // const title = formData.get("title");
+        // const text = formData.get("text");
+        // const urls = formData.get("url");
+        // const files = formData.getAll("file");
+        return NextResponse.json({ message: "Get What?", success: false});
+    }  catch (error) {
+        return NextResponse.json({ message: (error as Error).message, success: false});
+    }
+}
+
 export async function POST(req: NextRequest){
     try {
         const formData = await req.formData();
@@ -10,6 +30,11 @@ export async function POST(req: NextRequest){
         const urls = formData.get("url");
         const files = formData.getAll("file");
 
+        console.log("title: ", title);
+        console.log("text: ", text);
+        console.log("urls: ", urls);
+        console.log("files: ", files[0]);
+        return NextResponse.json({ message: "What?", success: false});
         // Empty arr to store the image urls
         const images: string[] = [];
         

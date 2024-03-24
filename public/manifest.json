@@ -4,28 +4,19 @@
     "theme_color": "#0c0d0e",
     "background_color": "#0c0d0e",
     "display": "standalone",
+    "display_override": ["fullscreen", "minimal-ui"],
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
     "share_target": {
-        "action": "/api/pwa",
-        "enctype": "multipart/form-data",
-        "method": "POST",
-        "params": {
-          "title": "title",
-          "text": "text",
-          "url": "url",
-          "files": [
-            {
-              "name": "file",
-              "accept": [
-                "image/jpeg",
-                "image/png",
-                "image/gif"
-              ]
-            }
-          ]
-        }
+      "action": "/api/pwa",
+      "method": "GET",
+      "params": {
+        "title": "title",
+        "text": "text",
+        "url": "url"
+       
+      }
     },
     "icons": [
       {
