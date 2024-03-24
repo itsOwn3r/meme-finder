@@ -7,8 +7,8 @@ import fetch from "node-fetch";
 export async function GET(req: NextRequest) {
   const rawUrl = new URL(req.url);
   const searchParams = new URLSearchParams(rawUrl.search);
-  const url = searchParams.get("url");
 
+  const url = searchParams.get("url");
   try {
     if (!url) {
       return NextResponse.json({ message: "URL is required", success: false });
@@ -27,7 +27,6 @@ export async function GET(req: NextRequest) {
     const regex = /<meta property="og:image" content="(.*?)"/;
     let img = htmlRawData.match(regex)![1];
     img = img.replaceAll("&amp;", "&");
-
     return NextResponse.json({ success: true, image: img });
 
   } catch (error) {
