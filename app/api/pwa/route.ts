@@ -4,8 +4,8 @@ import db from "@/db"
 
 
 export async function GET(req: NextRequest){
+    const parsedUrl = new URL(req.url);
     try {
-        const parsedUrl = new URL(req.url);
         console.log(parsedUrl);
         // searchParams.get() will properly handle decoding the values.
         console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
