@@ -74,7 +74,7 @@ export default async function MemeDetails({ params }: { params: { id: string }})
               height={800}
             />
           </div>
-          {meme.MemeItem.length > 0 && meme.MemeItem.map((item) => (
+          {meme.MemeItem.length > 0 && meme.MemeItem.map((item, i) => i === 0 ? null : (
                     <div key={item.id} className="relative mt-2.5 w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
                       <Image
                         alt="Meme"
