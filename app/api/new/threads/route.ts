@@ -8,6 +8,11 @@ export async function POST(req: NextRequest){
         const formData = await req.formData();
         const body: ObjToSendType = JSON.parse(formData.get("body") as string);
         const memes = formData.getAll("meme");
+        const password = formData.get("password");
+
+        if (password !== process.env.PASSWORD) {
+            return NextResponse.json({ success: false, message: "Unauthorized!" }, { status: 400 });
+        }
 
          // Empty arr to store the image urls
         const images: string[] = [];
