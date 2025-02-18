@@ -12,6 +12,7 @@ export type ObjToSendType = {
   category: HTMLInputElement | string[] | null | string;
   tags?: string[];
 
+  url?: string | null
   OCR?: string | null
 }
 

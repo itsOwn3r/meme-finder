@@ -14,13 +14,30 @@ datasource db {
 }
 
 model Memes {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
   meme        String
   title       String
-  isActive    Boolean @default(true)
+  isActive    Boolean    @default(true)
   ocr         String?
   description String?
   source      String?
-  category    String?   @default("general")
-  tags        String[] @default([])
+  category    String?    @default("general")
+  tags        String[]   @default([])
+  MemeItem    MemeItem[]
+}
+
+model MemeItem {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  memeId String @db.ObjectId
+  meme   Memes  @relation(fields: [memeId], references: [id])
+  url String
+}
+
+
+model Errors {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  isFixed Boolean @default(false)
+  url String
+  title String
+  description String?
 }

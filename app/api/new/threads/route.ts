@@ -7,7 +7,7 @@ export async function POST(req: NextRequest){
     try {
         const formData = await req.formData();
         const body: ObjToSendType = JSON.parse(formData.get("body") as string);
-        const memes = formData.getAll("meme") as File[];
+        const memes = formData.getAll("meme");
 
          // Empty arr to store the image urls
         const images: string[] = [];
@@ -32,10 +32,12 @@ export async function POST(req: NextRequest){
             }
 
             } catch (error) {
-            return NextResponse.json(
-                { status: "Not Ok", success: false, error },
-                { status: 400 }
-            );
+                await db.errors.create({
+                    data: {
+                        title: body.title as string,
+                        url: body.url as string
+                    }
+                })
             }
         }
 
@@ -48,6 +50,17 @@ export async function POST(req: NextRequest){
                 source:  "Threads",
             }
         })
+
+        for (const img of images) {
+
+            const createMemeItems = await db.memeItem.create({
+                data: {
+                    memeId: createMeme.id,
+                    url: img
+                }
+            })
+
+    }
 
 
         return NextResponse.json({ success: true, images, id: createMeme.id });
