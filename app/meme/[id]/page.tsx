@@ -48,7 +48,7 @@ export default async function MemeDetails({ params }: { params: { id: string }})
     return <ErrorPage />
   }
   return (
-    <section className="mt-8">
+    <section className="mt-8 flex flex-col">
       <div className="w-full flex items-center justify-between gap-x-1 pl-2">
       <Link scroll={false} href="/" className="flex items-center gap-x-1 pl-2 max-w-[7em]">
         <GoArrowLeft color="#F7F7F7" size={24} />
@@ -62,9 +62,9 @@ export default async function MemeDetails({ params }: { params: { id: string }})
 
       </div>
 
-      <div className="flex flex-col md:flex-row mt-5 gap-x-10 lg:gap-x-16 justify-center items-center">
-        <div className=" bg-super-dark-gray flex relative items-center justify-center md:pb-[25%] md:pt-[25%] pt-[50%] pb-[50%] rounded-2xl w-full md:w-1/2 border-4 border-outline border-opacity-15">
-          <div className="absolute w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
+      <div className="flex flex-col md:flex-row mt-5 gap-x-10 lg:gap-x-16 items-start justify-start">
+        <div className=" bg-super-dark-gray flex flex-col relative items-center justify-center md:pb-[5em] md:pt-[5em] pt-[2.5em] pb-[2.5em] rounded-2xl w-full md:w-1/2 border-4 border-outline border-opacity-15">
+          <div className="relative mt-2.5 w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
             <Image
               priority={true}
               alt={meme.title}
