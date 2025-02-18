@@ -74,6 +74,17 @@ export default async function MemeDetails({ params }: { params: { id: string }})
               height={800}
             />
           </div>
+          {meme.MemeItem.length > 0 && meme.MemeItem.map((item) => (
+                    <div key={item.id} className="relative mt-2.5 w-2/3 rounded-3xl overflow-hidden  shadow-shine bg-transparent bg-opacity-0 ">
+                      <Image
+                        alt="Meme"
+                        src={item.url}
+                        className="h-full w-full"
+                        width={800}
+                        height={800}
+                      />
+                  </div>
+          ))}
         </div>
         <div className="w-full mt-12 md:mt-0 md:w-1/2">
           <div className="flex flex-col gap-y-3 items-start">

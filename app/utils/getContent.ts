@@ -71,6 +71,9 @@ export async function getContent({ category, page, id, limit, search }: getConte
     where: where,
     take:  takeLimit,
     skip: currentPage,
+    include: {
+      MemeItem: true
+    }
   },
   )
   const total = await db.memes.count({
