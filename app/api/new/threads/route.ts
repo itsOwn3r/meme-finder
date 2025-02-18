@@ -53,6 +53,7 @@ export async function POST(req: NextRequest){
                 title: body.title as string,
                 description: body.description as string,
                 source:  "Threads",
+                category: "Threads"
             }
         })
 
