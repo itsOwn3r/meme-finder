@@ -14,18 +14,26 @@ export async function POST(req: Request) {
         const query = body.inline_query.query;
 
         const findMemes = await db.memes.findMany({
-            where: {
+          where: {
+            OR: [
+              {
                 title: {
-                    contains: query
+                  contains: query,
                 },
+              },
+              {
                 description: {
-                    contains: query
+                  contains: query,
                 },
+              },
+              {
                 ocr: {
-                    contains: query
-                }
-            }
-        })
+                  contains: query,
+                },
+              },
+            ],
+          },
+        });
 
 
         const results = [];
@@ -51,7 +59,7 @@ export async function POST(req: Request) {
                 description: meme.description,
                 caption: "@memehubocr \n @aimemerobot",
             })
-            
+
         }
 
         //   const results = [
