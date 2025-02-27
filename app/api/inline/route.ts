@@ -14,7 +14,7 @@ export async function POST(req: Request) {
         const query = body.inline_query.query;
 
         let findMemes;
-        
+
         if (query === "") {
           findMemes = await db.memes.findMany();
         } else {
@@ -25,16 +25,19 @@ export async function POST(req: Request) {
               {
                 title: {
                   contains: query,
+                  mode: "insensitive"
                 },
               },
               {
                 description: {
                   contains: query,
+                  mode: "insensitive"
                 },
               },
               {
                 ocr: {
                   contains: query,
+                  mode: "insensitive"
                 },
               },
             ],
@@ -65,7 +68,7 @@ export async function POST(req: Request) {
                 thumb_url: `https://meme.own3r.me/_next/image?url=${encodeURIComponent(meme.meme)}&w=256&q=50`,
                 title: meme.title,
                 description: meme.description,
-                caption: "@aimemerobot\n\n@memehubocr",
+                caption: "@aimemerobot\n@memehubocr",
             })
 
         }
