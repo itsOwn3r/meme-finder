@@ -13,7 +13,13 @@ export async function POST(req: Request) {
 
         const query = body.inline_query.query;
 
-        const findMemes = await db.memes.findMany({
+        let findMemes;
+        
+        if (query === "") {
+          findMemes = await db.memes.findMany();
+        } else {
+
+        findMemes = await db.memes.findMany({
           where: {
             OR: [
               {
@@ -35,6 +41,8 @@ export async function POST(req: Request) {
           },
         });
 
+      }
+
 
         const results = [];
 
@@ -54,42 +62,13 @@ export async function POST(req: Request) {
                 type: "photo",
                 id: meme.id,
                 photo_url: meme.meme,
-                thumb_url: `https://meme.own3r.me/_next/image?url=${encodeURIComponent(meme.meme)}&w=256&q=100`,
+                thumb_url: `https://meme.own3r.me/_next/image?url=${encodeURIComponent(meme.meme)}&w=256&q=50`,
                 title: meme.title,
                 description: meme.description,
-                caption: "@memehubocr \n @aimemerobot",
+                caption: "@aimemerobot\n\n@memehubocr",
             })
 
         }
-
-        //   const results = [
-        //     {
-        //         type: "article",
-        //         id: "1",
-        //         title: "Hello from Next.js",
-        //         input_message_content: {
-        //             message_text: "This is an inline bot response!",
-        //         },
-        //     },
-        //     {
-        //       type: "photo",
-        //       id: "2",
-        //       photo_url: "https://res.cloudinary.com/droxqswxo/image/upload/v1740501916/jz129fdq4lbmnwb9ocxn.jpg", // Replace with a real image URL
-        //       thumb_url: "https://res.cloudinary.com/droxqswxo/image/upload/v1740501916/jz129fdq4lbmnwb9ocxn.jpg", // Thumbnail URL
-        //       title: "Serial",
-        //       description: "Just Another meme",
-        //       caption: "Aha ok!",
-        //     },
-        //     {
-        //       type: "photo",
-        //       id: "3",
-        //       photo_url: "https://res.cloudinary.com/droxqswxo/image/upload/v1740502031/czqmcltquys2hlmf0fbm.jpg", // Replace with a real image URL
-        //       thumb_url: "https://res.cloudinary.com/droxqswxo/image/upload/v1740502031/czqmcltquys2hlmf0fbm.jpg", // Thumbnail URL
-        //       title: "Second",
-        //       description: "Second Just Another meme",
-        //       caption: "Second Aha ok!",
-        //     }
-        //   ];
   
 
       // Send response to Telegram
