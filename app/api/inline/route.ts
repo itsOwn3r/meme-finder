@@ -40,6 +40,11 @@ export async function POST(req: Request) {
                   mode: "insensitive"
                 },
               },
+              {
+                tags: {
+                  has: query
+                },
+              },
             ],
           },
         });
